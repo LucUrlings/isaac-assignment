@@ -3,67 +3,67 @@
         <b-img v-if="selectedUser.picture" :src="selectedUser.picture.large"/>
         <table>
             <tr v-if="selectedUser.name &&selectedUser.name.first && selectedUser.name.last">
-                <td width="150 px">Name</td>
+                <th scope="row">Name</th>
                 <td>{{ selectedUser.name.first }} {{ selectedUser.name.last }}</td>
             </tr>
             <tr v-if="selectedUser.gender">
-                <td>Gender</td>
+                <th scope="row">Gender</th>
                 <td>{{ selectedUser.gender }}</td>
             </tr>
             <template v-if="selectedUser.location">
                 <tr v-if="selectedUser.location.country">
-                    <td>Country</td>
+                    <th scope="row">Country</th>
                     <td>{{ selectedUser.location.country }}</td>
                 </tr>
                 <tr v-if="selectedUser.location.city">
-                    <td>City</td>
+                    <th scope="row">City</th>
                     <td>{{ selectedUser.location.city }}</td>
                 </tr>
                 <tr v-if="selectedUser.location.state">
-                    <td>State</td>
+                    <th scope="row">State</th>
                     <td>{{ selectedUser.location.state }}</td>
                 </tr>
                 <tr v-if="selectedUser.location.postcode">
-                    <td>Postalcode</td>
+                    <th scope="row">Postalcode</th>
                     <td>{{ selectedUser.location.postcode }}</td>
                 </tr>
                 <tr v-if="selectedUser.location.street.number && selectedUser.location.street.name">
-                    <td>Address</td>
+                    <th scope="row">Address</th>
                     <td>{{ selectedUser.location.street.name }} {{ selectedUser.location.street.number }}</td>
                 </tr>
                 <tr v-if="selectedUser.location.timezone.offset">
-                    <td>Timezone</td>
+                    <th scope="row">Timezone</th>
                     <td>{{ selectedUser.location.timezone.offset }}</td>
                 </tr>
                 <tr v-if="selectedUser.location.timezone.description">
-                    <td>Timezone cities</td>
+                    <th scope="row">Timezone cities</th>
                     <td>{{ selectedUser.location.timezone.description }}</td>
                 </tr>
             </template>
             <tr v-if="selectedUser.email">
-                <td>Email</td>
+                <th scope="row">Email</th>
                 <td>{{ selectedUser.email }}</td>
             </tr>
             <template v-if="selectedUser.dob">
                 <tr v-if="selectedUser.dob.date">
-                    <td>Date of Birth</td>
+                    <th scope="row">Date of Birth</th>
                     <td>{{ new Date(selectedUser.dob.date).toLocaleDateString("nl-NL") }}</td>
                 </tr>
                 <tr v-if="selectedUser.dob.date">
-                    <td>Age</td>
-                    <td>{{ getAge() }}</td>
+                    <th scope="row">Age</th>
+                    <td>{{ getAge }}</td>
                 </tr>
             </template>
             <tr v-if="selectedUser.phone">
-                <td>Phone</td>
+                <th scope="row">Phone</th>
                 <td>{{ selectedUser.phone }}</td>
             </tr>
             <tr v-if="selectedUser.cell">
-                <td>Cell</td>
+                <th scope="row">Cell</th>
                 <td>{{ selectedUser.cell }}</td>
             </tr>
             <tr v-if="selectedUser.nat">
-                <td>Nationality</td>
+                <th scope="row">Nationality</th>
                 <td>{{ selectedUser.nat }}</td>
             </tr>
         </table>
@@ -71,19 +71,17 @@
 </template>
 <script>
 export default {
-    name: 'detailsView',
+    name: 'Details',
     props: {
         selectedUser: {}
     },
-    methods: {
+    computed: {
         getAge() {
-            let ageMS = new Date(new Date() - new Date(this.selectedUser.dob.date));
-            let age = new Date();
+            const ageMS = new Date(new Date() - new Date(this.selectedUser.dob.date));
+            const age = new Date();
             age.setTime(ageMS);
 
-            let ageYear = age.getFullYear() - 1970
-
-            return ageYear;
+            return age.getFullYear() - 1970
         }
     }
 }

@@ -1,5 +1,8 @@
 <template>
-    <div id="app">
+    <div>
+        <nav>
+            <h1 class="text-center">Random users</h1>
+        </nav>
         <b-container>
             <Home/>
         </b-container>
@@ -7,7 +10,7 @@
 </template>
 
 <script>
-import Home from './components/Home.vue'
+import Home from './components/Table.vue'
 
 export default {
     name: 'App',
@@ -16,14 +19,3 @@ export default {
     }
 }
 </script>
-
-<style>
-#app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
-}
-</style>
